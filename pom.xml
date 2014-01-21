@@ -6,16 +6,16 @@
   <parent>
     <artifactId>scm-plugins</artifactId>
     <groupId>sonia.scm.plugins</groupId>
-    <version>1.13</version>
+    <version>1.23</version>
   </parent>
 
-  <groupId>sonia.scm.plugins</groupId>
-  <artifactId>scm-webhook-plugin</artifactId>
+  <groupId>com.github.indykish</groupId>
+  <artifactId>scm-megam-plugin</artifactId>
   <packaging>jar</packaging>
-  <version>1.5-SNAPSHOT</version>
+  <version>1.0-SNAPSHOT</version>
   <name>${project.artifactId}</name>
-  <description>Notify a remote webserver whenever a repository is pushed to.</description>
-  <url>https://bitbucket.org/sdorra/scm-webhook-plugin</url>
+  <description>Automatically trigger builds to a cloud upon push.</description>
+  <url>https://github.com/rajthilakmca/scm-megam-plugin</url>
 
   <dependencies>
 
