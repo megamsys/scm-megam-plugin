@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config>
+    <disabled>false</disabled>
+    <repositoryDirectory>/home/rajthilak/code/megam/workspace/scm-megam-plugin/target/scm-home/repositories/hg</repositoryDirectory>
+    <encoding>UTF-8</encoding>
+    <hgBinary>hg</hgBinary>
+    <pythonBinary>python</pythonBinary>
+    <pythonPath></pythonPath>
+    <showRevisionInId>false</showRevisionInId>
+    <useOptimizedBytecode>false</useOptimizedBytecode>
+</config>

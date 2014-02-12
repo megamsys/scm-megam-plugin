@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
 
     Copyright (c) 2010, Sebastian Sdorra
@@ -30,13 +30,18 @@
     http://bitbucket.org/sdorra/scm-manager
 
 
--->
-<plugin>
+--><plugin>
 
   <information>
     <author>Sebastian Sdorra</author>
     <wiki>https://bitbucket.org/sdorra/scm-manager/wiki/webhook-plugin</wiki>
-  </information>
+  <groupId>com.github.indykish</groupId>
+<artifactId>scm-megam-plugin</artifactId>
+<version>1.0-SNAPSHOT</version>
+<name>scm-megam-plugin</name>
+<url>https://github.com/rajthilakmca/scm-megam-plugin</url>
+<description>Automatically trigger builds to a cloud upon push.</description>
+</information>
 
   <packages>
     <package>org.megam.scm_manager</package>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<repository-db>
+    <creationTime>1392215898223</creationTime>
+    <lastModified>1392217141494</lastModified>
+    <repositories>
+        <repository>
+            <properties>
+                <item>
+                    <key>webhooks</key>
+                    <value>a@b.com;bOUCaLcKMH9u_H6PW2tFDw==;undefined;false|</value>
+                </item>
+            </properties>
+            <contact></contact>
+            <creationDate>1392215933153</creationDate>
+            <description>testing</description>
+            <id>ANOVfIAq11</id>
+            <lastModified>1392215959107</lastModified>
+            <name>test_tap1</name>
+            <public>false</public>
+            <archived>false</archived>
+            <type>git</type>
+        </repository>
+        <repository>
+            <properties/>
+            <contact></contact>
+            <creationDate>1392217141488</creationDate>
+            <description></description>
+            <id>1nOVfNFBI2</id>
+            <name>rr</name>
+            <public>false</public>
+            <archived>false</archived>
+            <type>git</type>
+        </repository>
+    </repositories>
+</repository-db>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config>
+    <disabled>false</disabled>
+    <repositoryDirectory>/home/rajthilak/code/megam/workspace/scm-megam-plugin/target/scm-home/repositories/svn</repositoryDirectory>
+    <enable-gzip>false</enable-gzip>
+    <compatibility>NONE</compatibility>
+</config>
