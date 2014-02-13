@@ -59,6 +59,12 @@
       <name>scm-manager release repository</name>
       <url>http://maven.scm-manager.org/nexus/content/groups/public</url>
     </repository>
+     <repository>
+            <id>Sonatype repository</id>
+            <name>Sonatype's Maven repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    
   
   </repositories>
 
