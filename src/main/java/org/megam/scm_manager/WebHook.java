@@ -64,9 +64,9 @@ public class WebHook
    *
    * @param email
    */
-  public WebHook(String email, String apikey)
+  public WebHook(String email, String apikey, String appname)
   {
-    this(email, apikey, false, false);
+    this(email, apikey, appname, false, false);
   }
 
   /**
@@ -77,10 +77,11 @@ public class WebHook
    * @param executeOnEveryCommit
    * @param apikey
    */
-  public WebHook(String email, String apikey, boolean executeOnEveryCommit, boolean sendCommitData)
+  public WebHook(String email, String apikey, String appname, boolean executeOnEveryCommit, boolean sendCommitData)
   {
     this.email = email;
     this.apikey = apikey;
+    this.appname = appname;
     this.executeOnEveryCommit = executeOnEveryCommit; 
     this.sendCommitData = sendCommitData;  
   }
@@ -112,6 +113,7 @@ public class WebHook
 
     return Objects.equal(email, other.email)
       && Objects.equal(apikey, other.apikey)
+      && Objects.equal(appname, other.appname)
       && Objects.equal(executeOnEveryCommit, other.executeOnEveryCommit)
       && Objects.equal(sendCommitData, other.sendCommitData);
   }
@@ -125,7 +127,7 @@ public class WebHook
   @Override
   public int hashCode()
   {
-    return Objects.hashCode(email, apikey, executeOnEveryCommit, sendCommitData);
+    return Objects.hashCode(email, apikey, appname, executeOnEveryCommit, sendCommitData);
   }
 
   /**
@@ -141,6 +143,7 @@ public class WebHook
     return Objects.toStringHelper(this)
                   .add("email", email)
                   .add("apikey", apikey)
+                  .add("appname", appname)
                   .add("executeOnEveryCommit", executeOnEveryCommit)
                   .add("sendCommitData", sendCommitData)
                   .toString();
@@ -183,6 +186,17 @@ public class WebHook
   }
 
   /**
+   * Method description
+   *
+   *
+   * @return
+   */
+  public String getAppName()
+  {
+    return appname;
+  }
+  
+  /**
   * Method description
   *
   *
@@ -201,6 +215,9 @@ public class WebHook
   /** Field description */
   private boolean sendCommitData;
 
+  /** Field description */
+  private String appname;
+  
   /** Field description */
   private String apikey;
 

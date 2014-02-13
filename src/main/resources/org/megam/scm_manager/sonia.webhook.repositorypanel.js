@@ -41,6 +41,7 @@ Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel,
       fields: [
         {name: 'email'},
         {apikey: 'apikey'},
+        {appname: 'appname'},
         {name: 'executeOnEveryCommit', type: 'boolean'},
         {name: 'sendCommitData', type: 'boolean'}
       ]
@@ -142,8 +143,9 @@ Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel,
         var w = new Webhook({
           email: pa[0].trim(),
           apikey: pa[1].trim(),
-          executeOnEveryCommit: pa[2] === 'true',
-          sendCommitData: pa[3] === 'true'
+          appname: pa[2].trim(),
+          executeOnEveryCommit: pa[3] === 'true',
+          sendCommitData: pa[4] === 'true'
         });
         if (debug){
           console.debug('add webhook: ');
@@ -170,7 +172,7 @@ Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel,
     this.webhookStore.data.each(function(r){
       var w = r.data;
       // TODO set sendCommitData
-      webhookString += w.email + ';' + w.apikey + ';' + w.executeOnEveryCommit + ';false|';
+      webhookString += w.email + ';' + w.apikey + ';' + w.appname + ';' + w.executeOnEveryCommit + ';false|';
     });
     
     if (debug){

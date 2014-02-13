@@ -36,9 +36,10 @@ Ext.ns('Sonia.webhook');
 Sonia.webhook.I18n = {
   
   // labels
-  formTitleText: 'WebHooks',
+  formTitleText: 'Megam',
   colEmail: 'Email',
   colApiKey: 'apikey',
+  colAppName: 'appname',
   colEveryCommitText: 'Execute on every commit',
   colSendCommitData: 'Send commit data',
   addText: 'Add',
@@ -75,16 +76,21 @@ Sonia.webhook.createColModel = function(){
        header: Sonia.webhook.I18n.colApiKey,
        editor: Ext.form.TextField
     },{
+       id: 'appname',
+       dataIndex: 'appname',
+       header: Sonia.webhook.I18n.colAppName,
+       editor: Ext.form.TextField
+    },{
       id: 'executeOnEveryCommit',
       xtype: 'checkcolumn',
       dataIndex: 'executeOnEveryCommit',
       header: Sonia.webhook.I18n.colEveryCommitText
-    },{
+    }/*,{
       id: 'sendCommitData',
       xtype: 'checkcolumn',
       dataIndex: 'sendCommitData',
       header: Sonia.webhook.I18n.colSendCommitData
-    }]
+    }*/]
   });
 };
 
