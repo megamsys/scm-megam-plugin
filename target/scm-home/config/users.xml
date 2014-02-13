@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <user-db>
-    <creationTime>1392215898183</creationTime>
-    <lastModified>1392215898203</lastModified>
+    <creationTime>1392279483501</creationTime>
+    <lastModified>1392279483526</lastModified>
     <users>
         <user>
             <properties/>
             <active>true</active>
             <admin>true</admin>
-            <creationDate>1392215898189</creationDate>
+            <creationDate>1392279483510</creationDate>
             <displayName>SCM Administrator</displayName>
             <mail>scm-admin@scm-manager.com</mail>
             <name>scmadmin</name>
@@ -18,7 +18,7 @@
             <properties/>
             <active>true</active>
             <admin>false</admin>
-            <creationDate>1392215898203</creationDate>
+            <creationDate>1392279483525</creationDate>
             <displayName>SCM Anonymous</displayName>
             <mail>scm-anonymous@scm-manager.com</mail>
             <name>anonymous</name>

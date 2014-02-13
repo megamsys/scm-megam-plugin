@@ -151,18 +151,19 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 		if (configParts.length > 0) {
 			String email = configParts[0];
 			String apikey = configParts[1];
+			String appname = configParts[2];
 			boolean executeOnEveryCommit = false;
 			boolean sendCommitData = false;
 
-			if (configParts.length > 2) {
-				executeOnEveryCommit = Boolean.parseBoolean(configParts[2]);
+			if (configParts.length > 3) {
+				executeOnEveryCommit = Boolean.parseBoolean(configParts[3]);
 
-				if (configParts.length > 3) {
-					sendCommitData = Boolean.parseBoolean(configParts[3]);
+				if (configParts.length > 4) {
+					sendCommitData = Boolean.parseBoolean(configParts[4]);
 				}
 			}
 
-			webhooks.add(new WebHook(email, apikey, executeOnEveryCommit,
+			webhooks.add(new WebHook(email, apikey, appname, executeOnEveryCommit,
 					sendCommitData));
 		}
 	}
