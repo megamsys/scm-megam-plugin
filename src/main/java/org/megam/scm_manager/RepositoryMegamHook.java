@@ -41,11 +41,9 @@ import org.slf4j.LoggerFactory;
 
 import sonia.scm.net.HttpClient;
 import sonia.scm.plugin.ext.Extension;
-import sonia.scm.repository.Changeset;
 import sonia.scm.repository.PostReceiveRepositoryHook;
 import sonia.scm.repository.Repository;
 import sonia.scm.repository.RepositoryHookEvent;
-import org.megam.scm_manager.jexl.JexlUrlParser;
 import org.megam.api.exception.APIContentException;
 import org.megam.api.exception.APIInvokeException;
 
@@ -53,18 +51,20 @@ import org.megam.api.exception.APIInvokeException;
 
 import java.util.Collection;
 
+
 /**
  * 
  * @author Sebastian Sdorra
  */
+
 @Extension
-public class RepositoryWebHook extends PostReceiveRepositoryHook {
+public class RepositoryMegamHook extends PostReceiveRepositoryHook {
 
 	/**
 	 * the logger for RepositoryWebHook
 	 */
 	private static final Logger logger = LoggerFactory
-			.getLogger(RepositoryWebHook.class);
+			.getLogger(RepositoryMegamHook.class);
 
 	// ~--- constructors
 	// ---------------------------------------------------------
@@ -77,10 +77,9 @@ public class RepositoryWebHook extends PostReceiveRepositoryHook {
 	 * @param context
 	 */
 	@Inject
-	public RepositoryWebHook(Provider<HttpClient> httpClientProvider,
-			WebHookContext context) {
+	public RepositoryMegamHook(Provider<HttpClient> httpClientProvider,
+			MegamHookContext context) {
 		this.httpClientProvider = httpClientProvider;
-		this.urlParser = new JexlUrlParser();
 		this.context = context;
 	}
 
@@ -94,33 +93,27 @@ public class RepositoryWebHook extends PostReceiveRepositoryHook {
 	 * @param event
 	 */
 	@Override
-	public void onEvent(RepositoryHookEvent event)  {
+	public void onEvent(RepositoryHookEvent event) {
 		try {
-		Repository repository = event.getRepository();
+			Repository repository = event.getRepository();			
+			if (repository != null) {
+				MegamHookConfiguration configuration = context
+						.getConfiguration(repository);
 
-		if (repository != null) {
-			WebHookConfiguration configuration = context
-					.getConfiguration(repository);
-
-			if (configuration.isWebHookAvailable()) {
-				executeWebHooks(configuration, repository,
-						event.getChangesets());
-			} else if (logger.isDebugEnabled()) {
-				logger.debug("no webhook defined for repository {}",
-						repository.getName());
+				if (configuration.isMegamHookAvailable()) {
+					executeMegamHooks(configuration, repository);										
+				} else if (logger.isDebugEnabled()) {
+					logger.debug("no megamhook defined for repository {}",
+							repository.getName());
+				}
+			} else if (logger.isErrorEnabled()) {
+				logger.error("received hook without repository");
 			}
-		} else if (logger.isErrorEnabled()) {
-			logger.error("received hook without repository");
+		} catch (APIInvokeException ex) {
+			logger.error("error during megamhook execution for ", ex);
+		} catch (APIContentException apc) {
+			logger.error("error during megamhook execution for ", apc);
 		}
-	 }
-	  catch (APIInvokeException ex )
-	    {
-	      logger.error("error during webhook execution for ", ex);
-	    }
-	  catch (APIContentException apc)
-	    {
-	      logger.error("error during webhook execution for ", apc);
-	    }
 	}
 
 	/**
@@ -129,32 +122,29 @@ public class RepositoryWebHook extends PostReceiveRepositoryHook {
 	 * 
 	 * @param configuration
 	 * @param repository
-	 * @param changesets
 	 */
-	private void executeWebHooks(WebHookConfiguration configuration,
-			Repository repository, Collection<Changeset> changesets) throws APIInvokeException, APIContentException  {		
-			if (logger.isDebugEnabled()) {
-				logger.debug("execute webhooks for repository {}",
-						repository.getName());
-			}
+	private void executeMegamHooks(MegamHookConfiguration configuration,
+			Repository repository) throws APIInvokeException,
+			APIContentException {
+		if (logger.isDebugEnabled()) {
+			logger.debug("execute megamhooks for repository {}",
+					repository.getName());
+		}
 
-			for (WebHook webHook : configuration) {
-
-				// async ??
-				new WebHookExecutor(httpClientProvider.get(), urlParser,
-					webHook, repository, changesets).run();
-			}		
+		for (MegamHook megamHook : configuration) {
+			// async ??
+			new MegamHookExecutor(httpClientProvider.get(), megamHook,
+					repository).run();
+		}
 	}
 
 	// ~--- fields
 	// ---------------------------------------------------------------
 
 	/** Field description */
-	private final WebHookContext context;
+	private final MegamHookContext context;
 
 	/** Field description */
 	private final Provider<HttpClient> httpClientProvider;
 
-	/** Field description */
-	private final UrlParser urlParser;
 }

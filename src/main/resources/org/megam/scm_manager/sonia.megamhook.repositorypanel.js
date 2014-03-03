@@ -30,14 +30,14 @@
  */
 
 
-Ext.ns('Sonia.webhook');
+Ext.ns('Sonia.megamhook');
 
-Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel, {
+Sonia.megamhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel, {
   
-  webhookStore: null,
+  megamhookStore: null,
   
   initComponent: function(){
-    this.webhookStore = new Ext.data.ArrayStore({
+    this.megamhookStore = new Ext.data.ArrayStore({
       fields: [
         {name: 'email'},
         {apikey: 'apikey'},
@@ -47,16 +47,16 @@ Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel,
       ]
     });
     
-    this.loadWebhooks(this.webhookStore, this.item);
+    this.loadMegamhooks(this.megamhookStore, this.item);
     
-    var webhookColModel = Sonia.webhook.createColModel();
+    var megamhookColModel = Sonia.megamhook.createColModel();
     
-    var selectionModel = Sonia.webhook.createRowSelectionModel();
+    var selectionModel = Sonia.megamhook.createRowSelectionModel();
     
     var config = {
-      title: Sonia.webhook.I18n.formTitleText,
+      title: Sonia.megamhook.I18n.formTitleText,
       items: [{
-        id: 'webhookGrid',
+        id: 'megamhookGrid',
         xtype: 'editorgrid',
         clicksToEdit: 1,
         autoExpandColumn: 'uri',
@@ -64,83 +64,83 @@ Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel,
         width: '100%',
         autoHeight: true,
         autoScroll: false,
-        colModel: webhookColModel,
+        colModel: megamhookColModel,
         sm: selectionModel,
-        store: this.webhookStore,
+        store: this.megamhookStore,
         viewConfig: {
           forceFit:true
         },
         tbar: [{
-          text: Sonia.webhook.I18n.addText,
+          text: Sonia.megamhook.I18n.addText,
           scope: this,
-          icon: Sonia.webhook.I18n.addIcon,
+          icon: Sonia.megamhook.I18n.addIcon,
           handler : function(){
-            var WebHook = this.webhookStore.recordType;
-            var p = new WebHook();
-            var grid = Ext.getCmp('webhookGrid');
+            var MegamHook = this.megamhookStore.recordType;
+            var p = new MegamHook();
+            var grid = Ext.getCmp('megamhookGrid');
             grid.stopEditing();
-            this.webhookStore.insert(0, p);
+            this.megamhookStore.insert(0, p);
             grid.startEditing(0, 0);
           }
         },{
-          text: Sonia.webhook.I18n.removeText,
+          text: Sonia.megamhook.I18n.removeText,
           scope: this,
-          icon: Sonia.webhook.I18n.removeIcon,
+          icon: Sonia.megamhook.I18n.removeIcon,
           handler: function(){
-            var grid = Ext.getCmp('webhookGrid');
+            var grid = Ext.getCmp('megamhookGrid');
             var selected = grid.getSelectionModel().getSelected();
             if ( selected ){
-              this.webhookStore.remove(selected);
+              this.megamhookStore.remove(selected);
             }
           }
         }, '->',{
-          id: 'webhookGridHelp',
+          id: 'megamhookGridHelp',
           xtype: 'box',
           autoEl: {
             tag: 'img',
-            src: Sonia.webhook.I18n.helpIcon
+            src: Sonia.megamhook.I18n.helpIcon
           }
         }]
       }]
     };
     Ext.apply(this, Ext.apply(this.initialConfig, config));
-    Sonia.webhook.RepositoryPanel.superclass.initComponent.apply(this, arguments);
+    Sonia.megamhook.RepositoryPanel.superclass.initComponent.apply(this, arguments);
   },
   
   afterRender: function(){
     // call super
-    Sonia.webhook.RepositoryPanel.superclass.afterRender.apply(this, arguments);
+    Sonia.megamhook.RepositoryPanel.superclass.afterRender.apply(this, arguments);
 
     Ext.QuickTips.register({
-      target: Ext.getCmp('webhookGridHelp'),
+      target: Ext.getCmp('megamhookGridHelp'),
       title: '',
-      text: Sonia.webhook.I18n.webhookGridHelpText,
+      text: Sonia.megamhook.I18n.megamhookGridHelpText,
       enabled: true
     });
   },
  
-  loadWebhooks: function(store, repository){
+  loadMegamhooks: function(store, repository){
     if (debug){
-      console.debug('load webhook properties');
+      console.debug('load megamhook properties');
     }
     if (!repository.properties){
       repository.properties = [];
     }
     Ext.each(repository.properties, function(prop){
-      if ( prop.key === 'webhooks' ){
+      if ( prop.key === 'megamhooks' ){
         var value = prop.value;
-        this.parseWebhooks(store, value);
+        this.parseMegamhooks(store, value);
       }
     }, this);
   },
   
-  parseWebhooks: function(store, webhookString){
-    var parts = webhookString.split('|');
+  parseMegamhooks: function(store, megamhookString){
+    var parts = megamhookString.split('|');
     Ext.each(parts, function(part){
       var pa = part.split(';');
       if ( pa.length > 0 && pa[0].length > 0 ){
-        var Webhook = store.recordType;
-        var w = new Webhook({
+        var Megamhook = store.recordType;
+        var w = new Megamhook({
           email: pa[0].trim(),
           apikey: pa[1].trim(),
           appname: pa[2].trim(),
@@ -148,7 +148,7 @@ Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel,
           sendCommitData: pa[4] === 'true'
         });
         if (debug){
-          console.debug('add webhook: ');
+          console.debug('add megamhook: ');
           console.debug( w );
         }
         store.add(w);
@@ -158,30 +158,30 @@ Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel,
   
   storeExtraProperties: function(repository){
     if (debug){
-      console.debug('store webhook properties');
+      console.debug('store megamhook properties');
     }
     
     // delete old sub repositories
     Ext.each(repository.properties, function(prop, index){
-      if ( prop.key === 'webhooks' ){
+      if ( prop.key === 'megamhooks' ){
         delete repository.properties[index];
       }
     });
     
-    var webhookString = '';
-    this.webhookStore.data.each(function(r){
+    var megamhookString = '';
+    this.megamhookStore.data.each(function(r){
       var w = r.data;
       // TODO set sendCommitData
-      webhookString += w.email + ';' + w.apikey + ';' + w.appname + ';' + w.executeOnEveryCommit + ';false|';
+      megamhookString += w.email + ';' + w.apikey + ';' + w.appname + ';' + w.executeOnEveryCommit + ';false|';
     });
     
     if (debug){
-      console.debug('add webhook string: ' + webhookString);
+      console.debug('add megamhook string: ' + megamhookString);
     }
     
     repository.properties.push({
-      key: 'webhooks',
-      value: webhookString
+      key: 'megamhooks',
+      value: megamhookString
     });
   }
   
@@ -190,4 +190,4 @@ Sonia.webhook.RepositoryPanel = Ext.extend(Sonia.repository.PropertiesFormPanel,
 
 
 // register xtype
-Ext.reg("webhookRepositoryPanel", Sonia.webhook.RepositoryPanel);
+Ext.reg("megamhookRepositoryPanel", Sonia.megamhook.RepositoryPanel);

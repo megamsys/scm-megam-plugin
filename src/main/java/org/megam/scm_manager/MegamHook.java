@@ -47,16 +47,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Sebastian Sdorra
  */
-@XmlRootElement(name = "webhook")
+@XmlRootElement(name = "megamhook")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class WebHook
+public class MegamHook
 {
 
   /**
    * Constructs ...
    *
    */
-  WebHook() {}
+  MegamHook() {}
 
   /**
    * Constructs ...
@@ -64,7 +64,7 @@ public class WebHook
    *
    * @param email
    */
-  public WebHook(String email, String apikey, String appname)
+  public MegamHook(String email, String apikey, String appname)
   {
     this(email, apikey, appname, false, false);
   }
@@ -77,7 +77,7 @@ public class WebHook
    * @param executeOnEveryCommit
    * @param apikey
    */
-  public WebHook(String email, String apikey, String appname, boolean executeOnEveryCommit, boolean sendCommitData)
+  public MegamHook(String email, String apikey, String appname, boolean executeOnEveryCommit, boolean sendCommitData)
   {
     this.email = email;
     this.apikey = apikey;
@@ -109,7 +109,7 @@ public class WebHook
       return false;
     }
 
-    final WebHook other = (WebHook) obj;
+    final MegamHook other = (MegamHook) obj;
 
     return Objects.equal(email, other.email)
       && Objects.equal(apikey, other.apikey)

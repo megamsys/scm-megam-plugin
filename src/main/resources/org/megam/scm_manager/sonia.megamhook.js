@@ -30,10 +30,10 @@
  */
 
 
-Ext.ns('Sonia.webhook');
+Ext.ns('Sonia.megamhook');
 
 
-Sonia.webhook.I18n = {
+Sonia.megamhook.I18n = {
   
   // labels
   formTitleText: 'Megam',
@@ -46,7 +46,7 @@ Sonia.webhook.I18n = {
   removeText: 'Remove',
   
   // help
-  webhookGridHelpText: 'Add and remove WebHooks for your repositories. \n\
+  megamhookGridHelpText: 'Add and remove MegamHooks for your repositories. \n\
     The "Url Pattern" column specifies the url of the remote website. \n\
     You can use patterns like ${repository.name} for the url.\n\
     If you enable the "Execute on every commit" checkbox, then is the specified \n\
@@ -59,7 +59,7 @@ Sonia.webhook.I18n = {
   helpIcon: 'resources/images/help.gif'
 };
 
-Sonia.webhook.createColModel = function(){
+Sonia.megamhook.createColModel = function(){
   return new Ext.grid.ColumnModel({
     defaults: {
       sortable: false,
@@ -68,33 +68,33 @@ Sonia.webhook.createColModel = function(){
     columns: [{
       id: 'email',
       dataIndex: 'email',
-      header: Sonia.webhook.I18n.colEmail,
+      header: Sonia.megamhook.I18n.colEmail,
       editor: Ext.form.TextField
     },{
        id: 'apikey',
        dataIndex: 'apikey',
-       header: Sonia.webhook.I18n.colApiKey,
+       header: Sonia.megamhook.I18n.colApiKey,
        editor: Ext.form.TextField
     },{
        id: 'appname',
        dataIndex: 'appname',
-       header: Sonia.webhook.I18n.colAppName,
+       header: Sonia.megamhook.I18n.colAppName,
        editor: Ext.form.TextField
     },{
       id: 'executeOnEveryCommit',
       xtype: 'checkcolumn',
       dataIndex: 'executeOnEveryCommit',
-      header: Sonia.webhook.I18n.colEveryCommitText
+      header: Sonia.megamhook.I18n.colEveryCommitText
     }/*,{
       id: 'sendCommitData',
       xtype: 'checkcolumn',
       dataIndex: 'sendCommitData',
-      header: Sonia.webhook.I18n.colSendCommitData
+      header: Sonia.megamhook.I18n.colSendCommitData
     }*/]
   });
 };
 
-Sonia.webhook.createRowSelectionModel = function(){
+Sonia.megamhook.createRowSelectionModel = function(){
   return new Ext.grid.RowSelectionModel({
     singleSelect: true
   });
@@ -104,7 +104,7 @@ Sonia.webhook.createRowSelectionModel = function(){
 Sonia.repository.openListeners.push(function(repository, panels){
   if (Sonia.repository.isOwner(repository)){
     panels.push({
-      xtype: 'webhookRepositoryPanel',
+      xtype: 'megamhookRepositoryPanel',
       item: repository
     });
   }
@@ -112,6 +112,6 @@ Sonia.repository.openListeners.push(function(repository, panels){
 
 // register global panel
 registerGeneralConfigPanel({
-  id: 'webhookGlobalPanel',
-  xtype: 'webhookGlobalPanel'
+  id: 'megamhookGlobalPanel',
+  xtype: 'megamhookGlobalPanel'
 });

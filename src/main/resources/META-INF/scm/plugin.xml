@@ -43,9 +43,9 @@
   </packages>
 
   <resources>
-    <script>/org/megam/scm_manager/sonia.webhook.js</script>
-    <script>/org/megam/scm_manager/sonia.webhook.globalpanel.js</script>
-    <script>/org/megam/scm_manager/sonia.webhook.repositorypanel.js</script>
+    <script>/org/megam/scm_manager/sonia.megamhook.js</script>
+    <script>/org/megam/scm_manager/sonia.megamhook.globalpanel.js</script>
+    <script>/org/megam/scm_manager/sonia.megamhook.repositorypanel.js</script>
   </resources>
 
 </plugin>

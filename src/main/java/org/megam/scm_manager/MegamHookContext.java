@@ -34,42 +34,41 @@ package org.megam.scm_manager;
 //~--- non-JDK imports --------------------------------------------------------
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
-import sonia.scm.util.SecurityUtil;
-import sonia.scm.web.security.WebSecurityContext;
-
-//~--- JDK imports ------------------------------------------------------------
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
+import sonia.scm.repository.Repository;
+import sonia.scm.store.Store;
+import sonia.scm.store.StoreFactory;
 
 /**
  *
  * @author Sebastian Sdorra
  */
-@Path("plugins/webhook")
-public class WebHookResource
+@Singleton
+public final class MegamHookContext
 {
+
+  /** Field description */
+  private static final String STORE_NAME = "megamhook";
+
+  //~--- constructors ---------------------------------------------------------
 
   /**
    * Constructs ...
    *
    *
-   * @param securityContext
-   * @param context
+   * @param storeFactory
    */
   @Inject
-  public WebHookResource(WebSecurityContext securityContext,
-    WebHookContext context)
+  public MegamHookContext(StoreFactory storeFactory)
   {
-	System.out.println("context------>"+context);	
-    SecurityUtil.assertIsAdmin(securityContext);
-    this.context = context;
+    this.store = storeFactory.getStore(MegamHookConfiguration.class, STORE_NAME);
+    globalConfiguration = store.get();
+
+    if (globalConfiguration == null)
+    {
+      globalConfiguration = new MegamHookConfiguration();
+    }
   }
 
   //~--- get methods ----------------------------------------------------------
@@ -78,14 +77,26 @@ public class WebHookResource
    * Method description
    *
    *
+   * @param repository
+   *
    * @return
    */
-  @GET
-  @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-  public WebHookConfiguration getConfiguration()
+  public MegamHookConfiguration getConfiguration(Repository repository)
   {
-	  System.out.println("Configuration------>"+context.getGlobalConfiguration());
-    return context.getGlobalConfiguration();
+    MegamHookConfiguration repoConf = new MegamHookConfiguration(repository);
+
+    return globalConfiguration.merge(repoConf);
+  }
+
+  /**
+   * Method description
+   *
+   *
+   * @return
+   */
+  public MegamHookConfiguration getGlobalConfiguration()
+  {
+    return globalConfiguration;
   }
 
   //~--- set methods ----------------------------------------------------------
@@ -94,17 +105,19 @@ public class WebHookResource
    * Method description
    *
    *
-   * @param configuration
+   * @param globalConfiguration
    */
-  @POST
-  @Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-  public void setConfiguration(WebHookConfiguration configuration)
+  public void setGlobalConfiguration(MegamHookConfiguration globalConfiguration)
   {
-    context.setGlobalConfiguration(configuration);
+    this.globalConfiguration = globalConfiguration;
+    store.set(globalConfiguration);
   }
 
   //~--- fields ---------------------------------------------------------------
 
   /** Field description */
-  private final WebHookContext context;
+  private final Store<MegamHookConfiguration> store;
+
+  /** Field description */
+  private MegamHookConfiguration globalConfiguration;
 }

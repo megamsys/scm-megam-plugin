@@ -51,12 +51,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  * @author Sebastian Sdorra
  */
-@XmlRootElement(name = "webhooks")
+@XmlRootElement(name = "megamhooks")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class WebHookConfiguration implements Iterable<WebHook> {
+public class MegamHookConfiguration implements Iterable<MegamHook> {
 
 	/** Field description */
-	public static final String PROPERTY_WEBHOOKS = "webhooks";
+	public static final String PROPERTY_MEGAMHOOKS = "megamhooks";
 
 	// ~--- constructors
 	// ---------------------------------------------------------
@@ -65,7 +65,7 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	 * Constructs ...
 	 * 
 	 */
-	public WebHookConfiguration() {
+	public MegamHookConfiguration() {
 	}
 
 	/**
@@ -74,11 +74,11 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	 * 
 	 * @param properies
 	 */
-	public WebHookConfiguration(PropertiesAware properies) {
-		String webHookString = properies.getProperty(PROPERTY_WEBHOOKS);
+	public MegamHookConfiguration(PropertiesAware properies) {
+		String megamHookString = properies.getProperty(PROPERTY_MEGAMHOOKS);
 
-		if (Util.isNotEmpty(webHookString)) {
-			parseWebHookProperty(webHookString);
+		if (Util.isNotEmpty(megamHookString)) {
+			parseMegamHookProperty(megamHookString);
 		}
 	}
 
@@ -86,10 +86,10 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	 * Constructs ...
 	 * 
 	 * 
-	 * @param webhooks
+	 * @param megamhooks
 	 */
-	public WebHookConfiguration(Set<WebHook> webhooks) {
-		this.webhooks.addAll(webhooks);
+	public MegamHookConfiguration(Set<MegamHook> megamhooks) {
+		this.megamhooks.addAll(megamhooks);
 	}
 
 	// ~--- methods
@@ -102,8 +102,8 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	 * @return
 	 */
 	@Override
-	public Iterator<WebHook> iterator() {
-		return webhooks.iterator();
+	public Iterator<MegamHook> iterator() {
+		return megamhooks.iterator();
 	}
 
 	/**
@@ -114,13 +114,13 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	 * 
 	 * @return
 	 */
-	public WebHookConfiguration merge(WebHookConfiguration otherConfiguration) {
-		Set<WebHook> allHooks = new HashSet<WebHook>();
+	public MegamHookConfiguration merge(MegamHookConfiguration otherConfiguration) {
+		Set<MegamHook> allHooks = new HashSet<MegamHook>();
 
-		allHooks.addAll(webhooks);
-		allHooks.addAll(otherConfiguration.webhooks);
+		allHooks.addAll(megamhooks);
+		allHooks.addAll(otherConfiguration.megamhooks);
 
-		return new WebHookConfiguration(allHooks);
+		return new MegamHookConfiguration(allHooks);
 	}
 
 	// ~--- get methods
@@ -132,8 +132,8 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	 * 
 	 * @return
 	 */
-	public boolean isWebHookAvailable() {
-		return !webhooks.isEmpty();
+	public boolean isMegamHookAvailable() {
+		return !megamhooks.isEmpty();
 	}
 
 	// ~--- methods
@@ -143,10 +143,10 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	 * Method description
 	 * 
 	 * 
-	 * @param webHookConfig
+	 * @param megamHookConfig
 	 */
-	private void parseWebHookConfig(String webHookConfig) {
-		String[] configParts = webHookConfig.split(";");
+	private void parseMegamHookConfig(String megamHookConfig) {
+		String[] configParts = megamHookConfig.split(";");
 
 		if (configParts.length > 0) {
 			String email = configParts[0];
@@ -163,7 +163,7 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 				}
 			}
 
-			webhooks.add(new WebHook(email, apikey, appname, executeOnEveryCommit,
+			megamhooks.add(new MegamHook(email, apikey, appname, executeOnEveryCommit,
 					sendCommitData));
 		}
 	}
@@ -172,13 +172,13 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	 * Method description
 	 * 
 	 * 
-	 * @param webHookString
+	 * @param megamHookString
 	 */
-	private void parseWebHookProperty(String webHookString) {
-		String[] webHookConfigs = webHookString.split("\\|");
+	private void parseMegamHookProperty(String megamHookString) {
+		String[] megamHookConfigs = megamHookString.split("\\|");
 
-		for (String webHookConfig : webHookConfigs) {
-			parseWebHookConfig(webHookConfig);
+		for (String megamHookConfig : megamHookConfigs) {
+			parseMegamHookConfig(megamHookConfig);
 		}
 	}
 
@@ -186,6 +186,6 @@ public class WebHookConfiguration implements Iterable<WebHook> {
 	// ----------------------------------------------------------
 
 	/** Field description */
-	@XmlElement(name = "webhook")
-	private Set<WebHook> webhooks = new HashSet<WebHook>();
+	@XmlElement(name = "megamhook")
+	private Set<MegamHook> megamhooks = new HashSet<MegamHook>();
 }

@@ -30,30 +30,30 @@
  */
 
 
-Ext.ns('Sonia.webhook');
+Ext.ns('Sonia.megamhook');
 
 
-Sonia.webhook.GlobalPanel = Ext.extend(Sonia.config.ConfigForm, {
+Sonia.megamhook.GlobalPanel = Ext.extend(Sonia.config.ConfigForm, {
   
-  webhookStore: null,
+  megamhookStore: null,
   
   initComponent: function(){
-    this.webhookStore = new Sonia.rest.JsonStore({
+    this.megamhookStore = new Sonia.rest.JsonStore({
       proxy: new Ext.data.HttpProxy({
-        url: restUrl + 'plugins/webhook.json',
+        url: restUrl + 'plugins/megamhook.json',
         disableCaching: false
       }),
-      root: 'webhook',
+      root: 'megamhook',
       fields: ['email', 'apikey', 'appname', 'sendCommitData', 'executeOnEveryCommit']
     });
     
-    var webhookColModel = Sonia.webhook.createColModel();
-    var selectionModel = Sonia.webhook.createRowSelectionModel();
+    var megamhookColModel = Sonia.megamhook.createColModel();
+    var selectionModel = Sonia.megamhook.createRowSelectionModel();
     
     var config = {
-      title: Sonia.webhook.I18n.formTitleText,
+      title: Sonia.megamhook.I18n.formTitleText,
       items: [{
-        id: 'webhookGlobalGrid',
+        id: 'megamhookGlobalGrid',
         xtype: 'editorgrid',
         clicksToEdit: 1,
         autoExpandColumn: 'uri',
@@ -61,70 +61,70 @@ Sonia.webhook.GlobalPanel = Ext.extend(Sonia.config.ConfigForm, {
         width: '100%',
         autoHeight: true,
         autoScroll: false,
-        colModel: webhookColModel,
+        colModel: megamhookColModel,
         sm: selectionModel,
-        store: this.webhookStore,
+        store: this.megamhookStore,
         viewConfig: {
           forceFit:true
         },
         tbar: [{
-          text: Sonia.webhook.I18n.addText,
+          text: Sonia.megamhook.I18n.addText,
           scope: this,
-          icon: Sonia.webhook.I18n.addIcon,
+          icon: Sonia.megamhook.I18n.addIcon,
           handler : function(){
-            var WebHook = this.webhookStore.recordType;
-            var p = new WebHook();
-            var grid = Ext.getCmp('webhookGlobalGrid');
+            var MegamHook = this.megamhookStore.recordType;
+            var p = new MegamHook();
+            var grid = Ext.getCmp('megamhookGlobalGrid');
             grid.stopEditing();
-            this.webhookStore.insert(0, p);
+            this.megamhookStore.insert(0, p);
             grid.startEditing(0, 0);
           }
         },{
-          text: Sonia.webhook.I18n.removeText,
+          text: Sonia.megamhook.I18n.removeText,
           scope: this,
-          icon: Sonia.webhook.I18n.removeIcon,
+          icon: Sonia.megamhook.I18n.removeIcon,
           handler: function(){
-            var grid = Ext.getCmp('webhookGlobalGrid');
+            var grid = Ext.getCmp('megamhookGlobalGrid');
             var selected = grid.getSelectionModel().getSelected();
             if ( selected ){
-              this.webhookStore.remove(selected);
+              this.megamhookStore.remove(selected);
             }
           }
         }, '->',{
-          id: 'webhookGlobalGridHelp',
+          id: 'megamhookGlobalGridHelp',
           xtype: 'box',
           autoEl: {
             tag: 'img',
-            src: Sonia.webhook.I18n.helpIcon
+            src: Sonia.megamhook.I18n.helpIcon
           }
         }]
       }]
     };
       
     Ext.apply(this, Ext.apply(this.initialConfig, config));
-    Sonia.webhook.GlobalPanel.superclass.initComponent.apply(this, arguments);
+    Sonia.megamhook.GlobalPanel.superclass.initComponent.apply(this, arguments);
   },
   
   afterRender: function(){
     // call super
-    Sonia.webhook.RepositoryPanel.superclass.afterRender.apply(this, arguments);
+    Sonia.megamhook.RepositoryPanel.superclass.afterRender.apply(this, arguments);
 
     Ext.QuickTips.register({
-      target: Ext.getCmp('webhookGlobalGridHelp'),
+      target: Ext.getCmp('megamhookGlobalGridHelp'),
       title: '',
-      text: Sonia.webhook.I18n.webhookGridHelpText,
+      text: Sonia.megamhook.I18n.megamhookGridHelpText,
       enabled: true
     });
   },
   
   onSubmit: function(values){
     this.el.mask(this.submitText);
-    values.webhook = [];
-    this.webhookStore.data.each(function(webhook){
-      values.webhook.push(webhook.data);
+    values.megamhook = [];
+    this.megamhookStore.data.each(function(megamhook){
+      values.megamhook.push(megamhook.data);
     });
     Ext.Ajax.request({
-      url: restUrl + 'plugins/webhook.json',
+      url: restUrl + 'plugins/megamhook.json',
       method: 'POST',
       jsonData: values,
       scope: this,
@@ -144,4 +144,4 @@ Sonia.webhook.GlobalPanel = Ext.extend(Sonia.config.ConfigForm, {
   
 });
 
-Ext.reg("webhookGlobalPanel", Sonia.webhook.GlobalPanel);
+Ext.reg("megamhookGlobalPanel", Sonia.megamhook.GlobalPanel);
