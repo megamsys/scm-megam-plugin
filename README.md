@@ -1,19 +1,28 @@
 scm-megam-plugin
 ================
 
-This is an plugin to scm-manager which  allows somebody to deploy the code directly to a platform as service.
+This is a plugin to (scm-manager)[http://scm-manager.org] which  allows to deploy the code directly to a (Megam)[https://www.megam.co]
 
-This plugin is part of the megam (https://www.megam.co) project.
+***package
 
-`
-build and run
+```
+mvn scmp:package
+```
 
+***build and run
+
+```
 mvn scmp:run
-`
+```
 
-Issue tracker: https://bitbucket.org/sdorra/scm-manager/issues
-Please register with https://www.megam.co  &  
-       set up scm-megam-plugin with the registered Email,API Key.
 
-Mailing list:  http://groups.google.com/group/scmmanager
-Docs: https://www.gomegam.com/docs
+Downloadable package: (link)[https://s3-ap-southeast-1.amazonaws.com/megampub/0.1/zip/scm-megam-plugin-1.0-SNAPSHOT.scmp]
+
+Installing scm-megam-plugin: Read the section "How to install the plugin" (link)[https://bitbucket.org/sdorra/scm-manager/wiki/faq]
+
+Read our blog (link)[http://blog.megam.co], and more info at (gomegam)[http://www.gomegam.com]. 
+
+scm-megam-plugin (support)[http://support.megam.co]
+
+Mailing list:  (scmmanager)[http://groups.google.com/group/scmmanager]
+Docs: (link)[https://www.gomegam.com/docs]
