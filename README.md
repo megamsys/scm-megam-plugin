@@ -1,7 +1,7 @@
 scm-megam-plugin
 ================
 
-This is a plugin to (scm-manager)[http://scm-manager.org] which  allows to deploy the code directly to a (Megam)[https://www.megam.co]
+This is a plugin to [scm-manager](http://scm-manager.org) which  allows to deploy the code directly to a [Megam](https://www.megam.co)
 
 * package
 
