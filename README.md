@@ -23,7 +23,7 @@ mvn scmp:run
 
 Support     :[support](http://support.megam.co)
 Mailing list:[scmmanager](http://groups.google.com/group/scmmanager)
-Docs        : [link](https://www.gomegam.com/docs)
+Docs        : [link](http://www.gomegam.com/docs)
 
 
 # License
