@@ -3,25 +3,50 @@ scm-megam-plugin
 
 This is a plugin to (scm-manager)[http://scm-manager.org] which  allows to deploy the code directly to a (Megam)[https://www.megam.co]
 
-***package
+* package
 
 ```
 mvn scmp:package
 ```
 
-***build and run
+* build and run
 
 ```
 mvn scmp:run
 ```
 
-Downloadable package: (link)[https://s3-ap-southeast-1.amazonaws.com/megampub/0.1/zip/scm-megam-plugin-1.0-SNAPSHOT.scmp]
+Downloadable package: [link](https://s3-ap-southeast-1.amazonaws.com/megampub/0.1/zip/scm-megam-plugin-1.0-SNAPSHOT.scmp)
 
-Installing scm-megam-plugin: Read the section "How to install the plugin" (link)[https://bitbucket.org/sdorra/scm-manager/wiki/faq]
+Installing scm-megam-plugin: [link](https://bitbucket.org/sdorra/scm-manager/wiki/faq)
 
-Read our blog (link)[http://blog.megam.co], and more info at (gomegam)[http://www.gomegam.com]. 
+Read our blog [link](http://blog.megam.co), and more info at [gomegam](http://www.gomegam.com). 
 
-scm-megam-plugin (support)[http://support.megam.co]
+scm-megam-plugin [support](http://support.megam.co)
 
-Mailing list:  (scmmanager)[http://groups.google.com/group/scmmanager]
-Docs: (link)[https://www.gomegam.com/docs]
+Mailing list:  [scmmanager](http://groups.google.com/group/scmmanager)
+Docs: [link](https://www.gomegam.com/docs)
+
+We are glad to help if you have questions, or request for new features..
+
+[twitter](http://twitter.com/indykish) [email](<rajthilak@megam.co.in>)
+
+# License
+
+|                      |                                          |
+|:---------------------|:-----------------------------------------|
+| **Author:**          | Rajthilak (<rajthilak@megam.co.in>)
+|		       	       | KishorekumarNeelamegam (<nkishore@megam.co.in>)
+| **Copyright:**       | Copyright (c) 2013-2014 Megam Systems.
+| **License:**         | Apache License, Version 2.0
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
