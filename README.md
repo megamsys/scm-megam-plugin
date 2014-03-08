@@ -15,20 +15,16 @@ mvn scmp:package
 mvn scmp:run
 ```
 
-Downloadable package: [link](https://s3-ap-southeast-1.amazonaws.com/megampub/0.1/zip/scm-megam-plugin-1.0-SNAPSHOT.scmp)
+### Download scm-megam-plugin.scmp: [link](https://s3-ap-southeast-1.amazonaws.com/megampub/0.1/zip/scm-megam-plugin-1.0-SNAPSHOT.scmp)
 
-Installing scm-megam-plugin: [link](https://bitbucket.org/sdorra/scm-manager/wiki/faq)
+### Installing scm-megam-plugin: [link](https://bitbucket.org/sdorra/scm-manager/wiki/faq)
 
-Read our blog [link](http://blog.megam.co), and more info at [gomegam](http://www.gomegam.com). 
+### Read our blog [link](http://blog.megam.co/archives/1134), and more info at [gomegam](http://www.gomegam.com/megam-scm-manager/). 
 
-scm-megam-plugin [support](http://support.megam.co)
+Support     :[support](http://support.megam.co)
+Mailing list:[scmmanager](http://groups.google.com/group/scmmanager)
+Docs        : [link](https://www.gomegam.com/docs)
 
-Mailing list:  [scmmanager](http://groups.google.com/group/scmmanager)
-Docs: [link](https://www.gomegam.com/docs)
-
-We are glad to help if you have questions, or request for new features..
-
-[twitter](http://twitter.com/indykish) [email](<rajthilak@megam.co.in>)
 
 # License
 
