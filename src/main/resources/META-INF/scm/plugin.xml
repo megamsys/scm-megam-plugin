@@ -34,9 +34,8 @@
 <plugin>
 
   <information>
-    <author>Sebastian Sdorra</author>
-    <wiki>https://bitbucket.org/sdorra/scm-manager/wiki/webhook-plugin</wiki>
-  </information>
+    <author>Thomal Alrin (alrin@megam.co.in), Rajthilak (rajthilak@megam.co.in), KishorekumarNeelamegam (nkishore@megam.co.in)</author>
+    </information>
 
   <packages>
     <package>org.megam.scm_manager</package>

@@ -33,9 +33,8 @@
 --><plugin>
 
   <information>
-    <author>Sebastian Sdorra</author>
-    <wiki>https://bitbucket.org/sdorra/scm-manager/wiki/webhook-plugin</wiki>
-  <groupId>com.github.indykish</groupId>
+    <author>Thomal Alrin (alrin@megam.co.in), Rajthilak (rajthilak@megam.co.in), KishorekumarNeelamegam (nkishore@megam.co.in)</author>
+    <groupId>com.github.indykish</groupId>
 <artifactId>scm-megam-plugin</artifactId>
 <version>1.0-SNAPSHOT</version>
 <name>scm-megam-plugin</name>

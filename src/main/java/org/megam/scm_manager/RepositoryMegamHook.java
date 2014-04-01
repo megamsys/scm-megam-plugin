@@ -39,7 +39,6 @@ import com.google.inject.Provider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import sonia.scm.net.HttpClient;
 import sonia.scm.plugin.ext.Extension;
 import sonia.scm.repository.PostReceiveRepositoryHook;
 import sonia.scm.repository.Repository;
@@ -72,14 +71,11 @@ public class RepositoryMegamHook extends PostReceiveRepositoryHook {
 	/**
 	 * Constructs ...
 	 * 
-	 * 
-	 * @param httpClientProvider
+	 * 	 
 	 * @param context
 	 */
 	@Inject
-	public RepositoryMegamHook(Provider<HttpClient> httpClientProvider,
-			MegamHookContext context) {
-		this.httpClientProvider = httpClientProvider;
+	public RepositoryMegamHook(MegamHookContext context) {	
 		this.context = context;
 	}
 
@@ -133,7 +129,7 @@ public class RepositoryMegamHook extends PostReceiveRepositoryHook {
 
 		for (MegamHook megamHook : configuration) {
 			// async ??
-			new MegamHookExecutor(httpClientProvider.get(), megamHook,
+			new MegamHookExecutor(megamHook,
 					repository).run();
 		}
 	}
@@ -143,8 +139,5 @@ public class RepositoryMegamHook extends PostReceiveRepositoryHook {
 
 	/** Field description */
 	private final MegamHookContext context;
-
-	/** Field description */
-	private final Provider<HttpClient> httpClientProvider;
 
 }

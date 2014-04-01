@@ -35,9 +35,8 @@ package org.megam.scm_manager;
 
 import com.google.inject.Inject;
 
-import sonia.scm.util.SecurityUtil;
-import sonia.scm.web.security.WebSecurityContext;
-
+import org.apache.shiro.SecurityUtils;
+import sonia.scm.security.Role;
 //~--- JDK imports ------------------------------------------------------------
 
 import javax.ws.rs.Consumes;
@@ -64,11 +63,9 @@ public class MegamHookResource
    * @param context
    */
   @Inject
-  public MegamHookResource(WebSecurityContext securityContext,
-    MegamHookContext context)
-  {
-	System.out.println("context------>"+context);	
-    SecurityUtil.assertIsAdmin(securityContext);
+  public MegamHookResource(MegamHookContext context)
+  {	
+	SecurityUtils.getSubject().checkRole(Role.ADMIN);
     this.context = context;
   }
 
@@ -83,8 +80,7 @@ public class MegamHookResource
   @GET
   @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
   public MegamHookConfiguration getConfiguration()
-  {
-	  System.out.println("Configuration------>"+context.getGlobalConfiguration());
+  {	
     return context.getGlobalConfiguration();
   }
 
