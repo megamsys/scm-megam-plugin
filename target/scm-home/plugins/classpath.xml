@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <classpath>
-    <path>/com/github/indykish/scm-megam-plugin/1.0-SNAPSHOT/scm-megam-plugin-1.0-SNAPSHOT.jar</path>
+    <path>/com/github/indykish/scm-megam-plugin/0.3/scm-megam-plugin-0.3.jar</path>
     <path>/com/jcraft/jsch/0.1.44-1/jsch-0.1.44-1.jar</path>
     <path>/com/github/indykish/megam_api_jvm/0.1.0-SNAPSHOT/megam_api_jvm-0.1.0-20140228.062346-6.jar</path>
     <path>/org/apache/httpcomponents/httpclient/4.2.5/httpclient-4.2.5.jar</path>
