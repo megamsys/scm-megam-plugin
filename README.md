@@ -1,7 +1,7 @@
 scm-megam-plugin
 ================
 
-This is a plugin to [scm-manager](http://scm-manager.org) which  allows to deploy the code directly to a [Megam](https://www.megam.co)
+This is a plugin to [scm-manager](http://scm-manager.org) which  allows to deploy the code directly to  [Megam](https://www.megam.co)
 
 * package
 
@@ -15,7 +15,7 @@ mvn scmp:package
 mvn scmp:run
 ```
 
-#### Download scm-megam-plugin.scmp: [link](https://s3-ap-southeast-1.amazonaws.com/megampub/0.1/zip/scm-megam-plugin-1.0-SNAPSHOT.scmp)
+#### Download scm-megam-plugin.scmp: [link](https://s3-ap-southeast-1.amazonaws.com/megampub/0.3/zip/scm-megam-plugin-0.3.scmp)
 
 #### Installing scm-megam-plugin: [link](https://bitbucket.org/sdorra/scm-manager/wiki/faq)
 
@@ -23,7 +23,7 @@ mvn scmp:run
 
 Support     :[support](http://support.megam.co)
 Mailing list:[scmmanager](http://groups.google.com/group/scmmanager)
-Docs        : [link](http://www.gomegam.com/docs)
+Docs        : [link](http://www.gomegam.com/docs/scms.html)
 
 
 # License
