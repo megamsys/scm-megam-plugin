@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010, Sebastian Sdorra
+ * Copyright (c) 2010, rajthilak
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * 
- * @author Sebastian Sdorra
+ * @author rajthilak
  */
 @XmlRootElement(name = "megamhooks")
 @XmlAccessorType(XmlAccessType.FIELD)

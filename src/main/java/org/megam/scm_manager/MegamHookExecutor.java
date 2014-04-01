@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010, Sebastian Sdorra
+ * Copyright (c) 2010, rajthilak
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,10 +36,7 @@ package org.megam.scm_manager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import sonia.scm.net.HttpClient;
-import sonia.scm.net.HttpResponse;
 import sonia.scm.repository.Repository;
-import org.megam.scm_manager.data.ImmutableEncodedRepository;
 import org.megam.api.APIClient;
 import org.megam.api.Nodes;
 import org.megam.api.Requests;
@@ -57,7 +54,7 @@ import java.util.Map;
 
 /**
  * 
- * @author Sebastian Sdorra
+ * @author rajthilak
  */
 public class MegamHookExecutor implements Runnable {
 
@@ -81,8 +78,7 @@ public class MegamHookExecutor implements Runnable {
 	 * @param repository
 	 * @param changesets
 	 */
-	public MegamHookExecutor(HttpClient httpClient, MegamHook megamHook, Repository repository) {
-		this.httpClient = httpClient;		
+	public MegamHookExecutor(MegamHook megamHook, Repository repository) {			
 		this.megamHook = megamHook;
 		this.repository = repository;		
 	}
@@ -107,22 +103,6 @@ public class MegamHookExecutor implements Runnable {
 			logger.error("error during megamhook execution for ", apc);
 		}
 
-	}
-
-	/**
-	 * Method description
-	 * 
-	 * 
-	 * @param repository
-	 * 
-	 * @return
-	 */
-	private Map<String, Object> createBaseEnvironment(Repository repository) {
-		Map<String, Object> env = new HashMap<String, Object>();
-
-		env.put("repository", new ImmutableEncodedRepository(repository));
-
-		return env;
 	}	
 
 	/**
@@ -140,16 +120,12 @@ public class MegamHookExecutor implements Runnable {
 		APIClient build = new APIClient(megamHook.getEmail(), megamHook.getApiKey());
 		RequestResult rs = (RequestResult) new Requests(build)
 				.post((NodeResult) new Nodes(build).list(megamHook.getAppName(),
-						""));
-		System.out.println(rs.json());
+						""));		
 	}
 
 	// ~--- fields
 	// ---------------------------------------------------------------
 		
-
-	/** Field description */
-	private HttpClient httpClient;
 
 	/** Field description */
 	private Repository repository;
